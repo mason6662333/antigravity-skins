@@ -1,8 +1,10 @@
 Antigravity Skins 1.2 · Mac 同事分享版
 
-适用于 Apple 芯片、macOS 14 或更高版本，以及 Google 签名的 Antigravity 2.33.0 桌面版。
+适用于 Apple 芯片、macOS 14 或更高版本，以及 Google 签名的官方 Antigravity 桌面版（已在 2.33.0 验证，不再硬锁单一小版本号）。
 
 1. 解压，把 Antigravity Skins.app 拖入“应用程序”。保留已安装的官方 Antigravity。
+   若首次打开提示“已损坏”或“无法验证开发者”，在终端运行以下命令解除下载隔离标记：
+   xattr -dr com.apple.quarantine "/Applications/Antigravity Skins.app"
 2. 保存正在进行的工作，正常退出 Antigravity。打开 Antigravity Skins，选一张图，点“带皮肤启动”。安装在其他目录时，从“…”选择官方 Antigravity.app。
 3. 用平时的账号工作。登录页沿用 Google 的外观，进入主页或会话后可以看到皮肤。点其他图即可切换，“最近用过”按使用顺序排列。
 4. 点卡片右下角的铅笔可预览大图、修改名称、壁纸和强调色。“添加皮肤”可导入自己的图片。每页 6 款，支持按名称搜索。

@@ -14,7 +14,11 @@ enum ShareFiles {
     }
     static func compatibility(_ url: URL) -> String? {
         guard let b = Bundle(url: url), b.bundleIdentifier == appleBundle else { return "请先将官方 Antigravity 安装到“应用程序”。" }
-        guard b.infoDictionary?["CFBundleShortVersionString"] as? String == "2.33.0" else { return "这版皮肤库适配官方 Antigravity 2.33.0（Apple 芯片）。" }
+        let binary = url.appendingPathComponent("Contents/MacOS/Antigravity").path
+        let server = url.appendingPathComponent("Contents/Resources/bin/language_server").path
+        guard fm.isExecutableFile(atPath: binary), fm.isExecutableFile(atPath: server) else {
+            return "所选 Antigravity 缺少必需组件，请重新安装官方版本。"
+        }
         var code: SecStaticCode?
         var requirement: SecRequirement?
         let rule = "anchor apple generic and identifier \"com.google.antigravity\" and certificate leaf[subject.OU] = \"EQHXZ8M8AV\""

@@ -1,6 +1,6 @@
 # Antigravity Skins
 
-原生的 macOS SwiftUI 皮肤管理器，为 **Antigravity 2.33.0（Apple Silicon）** 提供可视化壁纸皮肤库、强调色定制与免重启实时热更新。
+原生的 macOS SwiftUI 皮肤管理器，为 **Antigravity 桌面版（Apple Silicon）** 提供可视化壁纸皮肤库、强调色定制与免重启实时热更新。
 
 ## 核心特性
 
@@ -36,21 +36,22 @@ flowchart LR
 
 ### 安全与作用域边界（Share 版）
 
-- **签名校验**：启动前通过 `SecStaticCodeCheckValidity` 验证目标为 Google 签名的 `com.google.antigravity`（`OU=EQHXZ8M8AV`，`2.33.0`）。
+- **签名校验**：启动前通过 `SecStaticCodeCheckValidity` 验证目标为 Google 签名的 `com.google.antigravity`（`OU=EQHXZ8M8AV`），并检查关键可执行组件完整（不硬锁单一小版本号，客户端常规升级后可继续使用）。
 - **页面白名单**：仅查询当前 Antigravity 子进程 `language_server` 实际监听的 `https://127.0.0.1:<port>` 本地端口并注入 CSS；登录页等外部页面沿用官方默认外观，不会被注入。
 - **状态隔离**：皮肤库配置、选中记录与自定义壁纸保存在 `~/Library/Application Support/Antigravity Skins Share/`，不污染官方客户端目录。
 
 ## 快速使用（预编译 Release）
 
-适用于 **Apple 芯片、macOS 14+** 以及官方 **Antigravity 2.33.0** 桌面版：
+适用于 **Apple 芯片、macOS 14+** 以及 Google 签名的官方 **Antigravity** 桌面版（已在 `2.33.0` 验证）：
 
 1. 前往 [Releases](../../releases) 下载最新 `Antigravity-Skins-1.2-Mac-arm64.zip` 并解压，将 `Antigravity Skins.app` 拖入「应用程序」（保留已安装的官方 `Antigravity.app`）。
-2. 保存工作并完全退出当前运行的 Antigravity。
-3. 打开 `Antigravity Skins`，选中一款皮肤后点击 **「带皮肤启动」**（若官方客户端安装在自定义目录，点右上角 `…` →「选择 Antigravity…」）。
-4. 切换皮肤直接点击其他卡片即可实时生效；点卡片右下角铅笔可修改名称、壁纸与强调色；点右上角 `…` →「使用原版外观」可随时恢复默认样式。
-
-> [!NOTE]
-> Release 安装包采用本地 ad-hoc 签名，尚未经过 Apple 公证。首次打开若被 macOS 拦截，可右键点击应用选择「打开」，或在「系统设置 → 隐私与安全性」中放行，也可按下方步骤自行从源码编译。
+2. 首次打开若提示「已损坏」或「无法验证开发者」（因安装包为本地 ad-hoc 签名、未经过 Apple 公证），在终端执行一次以下命令解除下载隔离属性即可：
+   ```bash
+   xattr -dr com.apple.quarantine "/Applications/Antigravity Skins.app"
+   ```
+3. 保存工作并完全退出当前运行的 Antigravity。
+4. 打开 `Antigravity Skins`，选中一款皮肤后点击 **「带皮肤启动」**（若官方客户端安装在自定义目录，点右上角 `…` →「选择 Antigravity…」）。
+5. 切换皮肤直接点击其他卡片即可实时生效；点卡片右下角铅笔可修改名称、壁纸与强调色；点右上角 `…` →「使用原版外观」可随时恢复默认样式。
 
 ## 从源码本地构建
 
@@ -77,7 +78,7 @@ mkdir -p build
 
 构建脚本会编译 `ThemeSession`（C pipe + Swift）与 `AntigravitySkins`（SwiftUI），完成本地签名并通过 `codesign --verify --deep --strict` 校验，产物输出在 `build/Antigravity Skins.app`。
 
-### 2. 构建本地桥接版（面向已定制/汉化 2.33.0 客户端）
+### 2. 构建本地桥接版（面向已定制/汉化客户端）
 
 ```bash
 # 从本地 CodexDreamSkinStudio 主题库构建皮肤管理器
