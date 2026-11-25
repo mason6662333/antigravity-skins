@@ -1,0 +1,16 @@
+Antigravity Skins 1.2 · Mac 同事分享版
+
+适用于 Apple 芯片、macOS 14 或更高版本，以及 Google 签名的 Antigravity 2.33.0 桌面版。
+
+1. 解压，把 Antigravity Skins.app 拖入“应用程序”。保留已安装的官方 Antigravity。
+2. 保存正在进行的工作，正常退出 Antigravity。打开 Antigravity Skins，选一张图，点“带皮肤启动”。安装在其他目录时，从“…”选择官方 Antigravity.app。
+3. 用平时的账号工作。登录页沿用 Google 的外观，进入主页或会话后可以看到皮肤。点其他图即可切换，“最近用过”按使用顺序排列。
+4. 点卡片右下角的铅笔可预览大图、修改名称、壁纸和强调色。“添加皮肤”可导入自己的图片。每页 6 款，支持按名称搜索。
+5. 编辑窗口里的“移到已删除”会收起这款皮肤。在“已删除”中点恢复箭头即可找回。使用中的皮肤请先切换再删除。
+6. 想恢复默认外观，在“…”中选“使用原版外观”。下次直接打开官方 Antigravity 也会使用原版外观。希望带皮肤启动时，再从管理器打开。
+
+皮肤管理器使用本机专属管道给当前窗口加载样式，保留官方客户端及其 Google 签名。选中的主题和使用记录保存在当前 Mac 用户的“资源库/Application Support/Antigravity Skins Share”里。可以关闭皮肤管理器，当前窗口会继续使用已选皮肤。
+
+这是内部测试版，管理器使用本地签名，尚未经过 Apple 公证。如果公司 Mac 要求 Developer ID 签名及公证，请交由 IT 按内部流程签发。允许本地构建、已装 Apple Command Line Tools 的 Mac，也可以按“源码/本地构建.txt”自行编译。
+
+壁纸来自原有 Codex Dream Skin 主题库。Crayon Shin-chan 主题包标注作者 clownR、许可 MIT。

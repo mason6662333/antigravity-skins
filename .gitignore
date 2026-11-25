@@ -1,0 +1,9 @@
+.DS_Store
+build/
+dist/
+*.zip
+*.app/
+*.o
+__pycache__/
+*.pyc
+.swiftpm/

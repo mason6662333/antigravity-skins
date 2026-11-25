@@ -1,0 +1,301 @@
+/* Crayon Shin-chan, from the local Codex Dream Skin artwork.
+   Scope the illustration to the new chat and transcript surfaces. */
+:root {
+  --shin-tint: #fffaf4;
+  --shin-reading: rgba(255,252,248,.95);
+  --shin-border: rgba(143,99,61,.22);
+  --shin-red: #b01e13;
+  --shin-chip-bg: rgba(255,251,246,.74);
+  --shin-chip-bg-hover: rgba(255,252,248,.90);
+  --shin-chip-border: rgba(143,99,61,.24);
+  --shin-chip-fg: rgba(34,26,22,.86);
+  --shin-chip-fg-strong: rgba(20,15,12,.96);
+  --shin-dot-idle: rgba(34,26,22,.42);
+  --shin-dot-hover: rgba(20,15,12,.78);
+  --shin-greeting-fg: rgba(28,22,19,.94);
+  --shin-greeting-scrim: radial-gradient(ellipse 68% 64% at 50% 50%, rgba(255,250,244,.62) 0%, rgba(255,250,244,.24) 52%, transparent 80%);
+  --shin-greeting-shadow: 0 1px 2px rgba(255,250,244,.88), 0 4px 18px rgba(255,250,244,.65);
+}
+:root.dark, :root:has(body.theme-dark), body.theme-dark {
+  --shin-tint: #251f1e;
+  --shin-reading: rgba(28,25,28,.88);
+  --shin-border: rgba(255,226,189,.21);
+  --shin-red: #ffa79b;
+  --shin-chip-bg: rgba(22,19,20,.48);
+  --shin-chip-bg-hover: rgba(30,26,28,.70);
+  --shin-chip-border: rgba(255,236,214,.16);
+  --shin-chip-fg: rgba(255,251,245,.86);
+  --shin-chip-fg-strong: rgba(255,253,250,.98);
+  --shin-dot-idle: rgba(255,250,244,.48);
+  --shin-dot-hover: rgba(255,252,248,.84);
+  --shin-greeting-fg: rgba(255,253,249,.97);
+  --shin-greeting-scrim: radial-gradient(ellipse 68% 64% at 50% 50%, rgba(18,14,12,.36) 0%, rgba(18,14,12,.14) 52%, transparent 80%);
+  --shin-greeting-shadow: 0 1px 3px rgba(14,11,9,.68), 0 4px 18px rgba(14,11,9,.50), 0 0 36px rgba(14,11,9,.26);
+}
+/* All illustrated surfaces use the viewport as their coordinate system. */
+body {
+  --shin-veil: rgba(255,250,244,.34);
+  --shin-rail: rgba(255,250,244,.78);
+  --shin-size: cover;
+  --shin-position: center center;
+}
+body.theme-dark {
+  --shin-veil: rgba(23,21,26,.44);
+  --shin-rail: rgba(21,22,29,.78);
+}
+.agy-home, [data-testid="conversation-view"],
+[data-media-drop-scope].p-8:has([data-testid="agent-input-box"]),
+.bg-sidebar:has([data-testid="sidebar-navigation-items"]),
+.agy-shell [class~="@container/titlebar"] {
+  --shin-layer: var(--shin-veil);
+  background-color: var(--shin-tint) !important;
+  box-shadow: inset 0 0 0 150vmax var(--shin-layer) !important;
+  background-image: url("__ARTWORK__") !important;
+  background-position: var(--shin-position) !important;
+  background-size: var(--shin-size) !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+}
+.bg-sidebar:has([data-testid="sidebar-navigation-items"]),
+.agy-shell [class~="@container/titlebar"] {
+  --shin-layer: var(--shin-rail);
+}
+[data-testid="conversation-view"] [data-quotable]:has([data-step-list]),
+[data-testid="conversation-view"] [data-step-list]:not([data-quotable] [data-step-list]) {
+  background-color: var(--shin-reading) !important;
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px var(--shin-border);
+  box-sizing: border-box !important;
+  min-inline-size: 0;
+  padding: clamp(14px, 1.35vw, 21px) clamp(18px, 2.15vw, 32px) !important;
+}
+[data-testid="user-message-bubble"], .surface-composer-card {
+  background-color: var(--shin-reading) !important;
+}
+[data-testid="user-message-bubble"] {
+  box-sizing: border-box !important;
+  padding: clamp(9px, .8vw, 12px) clamp(13px, 1.2vw, 19px) !important;
+}
+.surface-composer-card {
+  padding: 6px 9px !important;
+}
+.surface-composer {
+  box-shadow: 0 0 0 1px var(--shin-border), 0 4px 20px rgba(35,24,18,.12);
+}
+.surface-composer:focus-within {
+  box-shadow: 0 0 0 1px var(--shin-red), 0 4px 20px rgba(35,24,18,.12);
+}
+[data-testid="new-conversation-button"] svg, [data-testid="new-conversation-button"] .material-symbols-outlined {
+  color: var(--shin-red) !important;
+}
+
+/* Home greeting: borderless floating typography with soft edge-less halo */
+.agy-home .home-greeting-title {
+  background: var(--shin-greeting-scrim) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+  color: var(--shin-greeting-fg) !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.015em;
+  max-inline-size: min(40rem, calc(100vw - 4rem));
+  padding: .55em 1.4em !important;
+  line-height: 1.35 !important;
+  text-wrap: balance;
+  text-shadow: var(--shin-greeting-shadow) !important;
+}
+.agy-home .home-greeting-mark { display: none !important; }
+[data-testid="conversation-view"] .pointer-events-none[style*="linear-gradient(to top, var(--background)"] {
+  background: none !important;
+}
+@media (min-width: 1100px) {
+  .agy-home [data-testid="home-greeting"] { transform: translate(-8vw, -3vh); }
+}
+[data-testid="new-conversation-button"] {
+  border-inline-start: 2px solid #cd2316;
+}
+[data-sidebar-row-id][aria-current="page"] { border-inline-start: 2px solid #cd2316; }
+
+/* Floating frosted pills over wallpaper: user actions, AI toolbar, running status & home starter prompts */
+[data-testid="conversation-view"] [data-testid="user-message-actions"] {
+  width: fit-content !important;
+  max-width: 100%;
+  margin-inline-start: auto;
+  margin-top: 4px;
+  padding: 2px 6px 2px 8px !important;
+  border-radius: 999px;
+  background-color: var(--shin-chip-bg) !important;
+  border: 1px solid var(--shin-chip-border);
+  box-shadow: 0 2px 10px rgba(0,0,0,.14);
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
+  backdrop-filter: blur(12px) saturate(135%);
+}
+[data-testid="conversation-view"] [data-testid="user-message-actions"] > span,
+[data-testid="conversation-view"] [data-testid="user-message-actions"] button {
+  color: var(--shin-chip-fg) !important;
+}
+[data-testid="conversation-view"] [data-testid="user-message-actions"] button:hover {
+  color: var(--shin-chip-fg-strong) !important;
+  background-color: color-mix(in srgb, var(--shin-chip-fg-strong) 12%, transparent) !important;
+}
+
+[data-testid="conversation-view"] [data-testid="cascade-system-message-toolbar"] {
+  padding-inline: 0 !important;
+  margin-top: 8px;
+  gap: 6px;
+}
+[data-testid="conversation-view"] [data-testid="idle-status-text"],
+[data-testid="conversation-view"] [data-testid="agent-loading"] {
+  width: fit-content !important;
+  max-width: 100%;
+  margin: 0 !important;
+  padding: 3px 10px !important;
+  min-height: 0 !important;
+  border-radius: 999px;
+  background-color: var(--shin-chip-bg) !important;
+  border: 1px solid var(--shin-chip-border);
+  box-shadow: 0 2px 10px rgba(0,0,0,.14);
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
+  backdrop-filter: blur(12px) saturate(135%);
+  color: var(--shin-chip-fg-strong) !important;
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+[data-testid="conversation-view"] [data-testid="agent-loading"] {
+  margin-top: 8px !important;
+}
+[data-testid="conversation-view"] [data-testid="idle-status-text"]:hover {
+  background-color: var(--shin-chip-bg-hover) !important;
+}
+[data-testid="conversation-view"] [data-testid="idle-status-text"] .animate-shimmer-text,
+[data-testid="conversation-view"] [data-testid="agent-loading"] .animate-shimmer-text {
+  color: var(--shin-chip-fg-strong) !important;
+}
+[data-testid="conversation-view"] [data-testid="cascade-system-message-toolbar"] > div:not([data-testid="idle-status-text"]) {
+  width: fit-content !important;
+  max-width: 100%;
+  margin: 0 !important;
+  padding: 2px 8px 2px 4px !important;
+  border-radius: 999px;
+  background-color: var(--shin-chip-bg) !important;
+  border: 1px solid var(--shin-chip-border);
+  box-shadow: 0 2px 10px rgba(0,0,0,.14);
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
+  backdrop-filter: blur(12px) saturate(135%);
+}
+[data-testid="conversation-view"] [data-testid="cascade-system-message-toolbar"] > div:not([data-testid="idle-status-text"]) button,
+[data-testid="conversation-view"] [data-testid="cascade-system-message-toolbar"] > div:not([data-testid="idle-status-text"]) > span,
+[data-testid="conversation-view"] [data-testid="cascade-system-message-toolbar"] > div:not([data-testid="idle-status-text"]) .text-muted-foreground {
+  color: var(--shin-chip-fg) !important;
+}
+[data-testid="conversation-view"] [data-testid="cascade-system-message-toolbar"] > div:not([data-testid="idle-status-text"]) button:hover,
+[data-testid="conversation-view"] [data-testid="cascade-system-message-toolbar"] > div:not([data-testid="idle-status-text"]) button[aria-pressed="true"] {
+  color: var(--shin-chip-fg-strong) !important;
+  background-color: color-mix(in srgb, var(--shin-chip-fg-strong) 12%, transparent) !important;
+}
+
+.agy-home [data-testid="suggested-actions-section"] {
+  gap: 6px !important;
+}
+.agy-home [data-testid="suggested-actions-section"] > div {
+  width: fit-content !important;
+  max-width: 100%;
+  border-radius: 10px;
+  background-color: var(--shin-chip-bg) !important;
+  border: 1px solid var(--shin-chip-border);
+  box-shadow: 0 2px 10px rgba(0,0,0,.14);
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
+  backdrop-filter: blur(12px) saturate(135%);
+  transition: background-color 140ms ease, border-color 140ms ease;
+}
+.agy-home [data-testid="suggested-actions-section"] > div:hover {
+  background-color: var(--shin-chip-bg-hover) !important;
+}
+.agy-home [data-testid="suggested-actions-section"] button span,
+.agy-home [data-testid="suggested-actions-section"] [data-testid="suggested-action-antigravity-icon"],
+.agy-home [data-testid="suggested-actions-section"] [data-testid^="suggested-action-dismiss-"] {
+  color: var(--shin-chip-fg) !important;
+}
+.agy-home [data-testid="suggested-actions-section"] > div:hover button span,
+.agy-home [data-testid="suggested-actions-section"] [data-testid^="suggested-action-dismiss-"]:hover {
+  color: var(--shin-chip-fg-strong) !important;
+}
+
+/* Side conversation turn-navigator rail: slim frosted track + legible dots */
+[data-testid="conversation-navigator"] > div::before {
+  content: "";
+  position: absolute;
+  inset: -5px 4px;
+  border-radius: 999px;
+  background-color: var(--shin-chip-bg);
+  border: 1px solid var(--shin-chip-border);
+  box-shadow: 0 2px 10px rgba(0,0,0,.16);
+  -webkit-backdrop-filter: blur(10px) saturate(135%);
+  backdrop-filter: blur(10px) saturate(135%);
+  pointer-events: none;
+}
+[data-testid="conversation-navigator"] ol {
+  position: relative;
+  z-index: 1;
+  opacity: .92 !important;
+}
+[data-testid="conversation-navigator"]:hover ol,
+[data-testid="conversation-navigator"]:focus-within ol {
+  opacity: 1 !important;
+}
+[data-testid="conversation-navigator"] [data-testid="conversation-navigator-turn"] > span,
+[data-testid="conversation-navigator"] [data-testid="conversation-navigator-group"] > span {
+  background-color: var(--shin-dot-idle) !important;
+  box-shadow: 0 0 0 0.5px rgba(0,0,0,.18);
+}
+[data-testid="conversation-navigator"] [data-testid="conversation-navigator-turn"]:is(:hover, :focus-visible) > span,
+[data-testid="conversation-navigator"] [data-testid="conversation-navigator-group"]:is(:hover, :focus-visible) > span {
+  background-color: var(--shin-dot-hover) !important;
+}
+[data-testid="conversation-navigator"] [data-testid="conversation-navigator-turn"][data-active="true"] > span {
+  background-color: var(--shin-chip-fg-strong) !important;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--shin-red) 55%, transparent), 0 1px 4px rgba(0,0,0,.35) !important;
+}
+[data-testid="conversation-navigator"] > div > button {
+  z-index: 2;
+  color: var(--shin-chip-fg) !important;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,.45));
+}
+[data-testid="conversation-navigator"] > div > button:hover {
+  color: var(--shin-chip-fg-strong) !important;
+}
+
+/* Virtualized rows sit in transformed elements. Expose the single image
+   on the sidebar itself so they never acquire a separate wallpaper. */
+.bg-sidebar:has([data-testid="sidebar-navigation-items"]) [data-sidebar-section-drop-id]:is(.bg-sidebar, .bg-background),
+.bg-sidebar:has([data-testid="sidebar-navigation-items"]) [data-sidebar-section-drop-id] :is(.bg-sidebar, .bg-background) {
+  background: transparent !important;
+}
+.bg-sidebar:has([data-testid="sidebar-navigation-items"]) [data-sidebar-section-drop-id][style*="sticky"] {
+  background-color: color-mix(in srgb, var(--shin-tint) 88%, transparent) !important;
+}
+
+/* Reading width for the illustrated conversation, including its composer. */
+[data-testid="conversation-view"] [style*="max-width:"][style*="--max-conversation-width"] {
+  max-width: min(100%, max(24.255vw, calc(0.8085 * var(--max-conversation-width, 48rem)))) !important;
+}
+
+/* The native table can extend to the scroll pane. Keep it inside the card. */
+[data-testid="conversation-view"] .md-table-host[data-width-mode] {
+  box-sizing: border-box;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  margin-inline: 0 !important;
+  transform: none !important;
+}
+[data-testid="conversation-view"] .md-table-frame,
+[data-testid="conversation-view"] .md-table-el {
+  width: 100%;
+}
+[data-testid="conversation-view"] .md-table-el :is(th, td) > div {
+  min-width: 6ch !important;
+  max-width: none !important;
+  overflow-wrap: anywhere;
+}
